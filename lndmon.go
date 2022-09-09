@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"time"
 
 	flags "github.com/jessevdk/go-flags"
 	"github.com/lightninglabs/lndclient"
@@ -44,6 +45,7 @@ func start() error {
 			CustomMacaroonPath: filepath.Join(
 				cfg.Lnd.MacaroonDir, cfg.Lnd.MacaroonName,
 			),
+			RPCTimeout: time.Duration(cfg.Lnd.RPCTimeout) * time.Second,
 			TLSPath: cfg.Lnd.TLSPath,
 			CheckVersion: &verrpc.Version{
 				AppMajor: 0,
